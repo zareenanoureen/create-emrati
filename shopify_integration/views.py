@@ -7,7 +7,6 @@ from . import shopify_settings
 def install_app(request): 
     shop = request.GET.get('shop')
     if shop:
-        print(shopify_settings.SHOPIFY_API_KEY)
         redirect_uri = shopify_settings.SHOPIFY_REDIRECT_URI
         scope = shopify_settings.SHOPIFY_SCOPE
         install_url = f"https://{shop}/admin/oauth/authorize?client_id={shopify_settings.SHOPIFY_API_KEY}&scope={scope}&redirect_uri={redirect_uri}"
