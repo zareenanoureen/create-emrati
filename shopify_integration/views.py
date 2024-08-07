@@ -9,6 +9,7 @@ def install_app(request):
     shop = request.GET.get('shop')
     if shop:
         redirect_uri = shopify_settings.SHOPIFY_REDIRECT_URI
+        scope = shopify_settings.SHOPIFY_SCOPE
         # Ensure scope is a comma-separated string without leading/trailing spaces
         scope = ','.join([s.strip() for s in scope.split(',')])
 
