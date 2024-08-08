@@ -19,8 +19,14 @@ def install_app(request):
 
 
 def callback(request):
+    print(f"request type: {type(request)}")
+    print(f"request.GET type: {type(request.GET)}")
+
     shop = request.GET.get('shop')
     code = request.GET.get('code')
+
+    print(f"shop: {shop}, code: {code}")
+
     if shop and code:
         shopify.Session.setup(api_key=shopify_settings.SHOPIFY_API_KEY, secret=shopify_settings.SHOPIFY_API_SECRET)
         session = shopify.Session(shop, '2024-07')
