@@ -23,7 +23,7 @@ def callback(request):
     code = request.GET.get('code')
     if shop and code:
         shopify.Session.setup(api_key=shopify_settings.SHOPIFY_API_KEY, secret=shopify_settings.SHOPIFY_API_SECRET)
-        session = shopify.Session(shop, '2024-07(Latest)')
+        session = shopify.Session(shop, '2024-07')
         access_token = session.request_token(code)
         request.session['shopify_access_token'] = access_token
         return redirect('home')
