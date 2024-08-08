@@ -13,6 +13,9 @@ def install_app(request):
         # Ensure scope is a comma-separated string without leading/trailing spaces
         scope = ','.join([s.strip() for s in scope.split(',')])
 
+        # Encode the redirect_uri properly (only once)
+        redirect_uri = urllib.parse.quote(redirect_uri, safe='')
+
         # Construct the URL with properly URL-encoded parameters
         params = {
             "client_id": shopify_settings.SHOPIFY_API_KEY,
@@ -23,6 +26,7 @@ def install_app(request):
         install_url = f"https://{shop}/admin/oauth/authorize?{encoded_params}"
         return redirect(install_url)
     return render(request, 'shopify_integration/install.html')
+
 
 def callback(request):
     shop = request.GET.get('shop')
