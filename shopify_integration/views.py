@@ -28,11 +28,15 @@ def callback(request):
     print(f"shop: {shop}, code: {code}")
 
     if shop and code:
-        shopify.Session.setup(api_key=shopify_settings.SHOPIFY_API_KEY, secret=shopify_settings.SHOPIFY_API_SECRET)
-        session = shopify.Session(shop, '2024-07')
-        access_token = session.request_token(code)
-        request.session['shopify_access_token'] = access_token
-        return redirect('home')
+        try:
+            shopify.Session.setup(api_key=shopify_settings.SHOPIFY_API_KEY, secret=shopify_settings.SHOPIFY_API_SECRET)
+            session = shopify.Session(shop, '2024-07')
+            print(f"session type: {type(session)}")
+            access_token = session.request_token(code)
+            request.session['shopify_access_token'] = access_token
+        except Exception as e:
+            print(f"Error during request_token: {e}")
+            return redirect('home')
     return render(request, 'shopify_integration/error.html', {'message': 'Shop or code parameter missing'})
 
 def home(request):
