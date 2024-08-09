@@ -59,7 +59,7 @@ def signin(request):
             if check_password(password, user.password):
                 if user.is_active:
                     login(request, user)
-                    return redirect(reverse('install-app'))
+                    return redirect(reverse('install_app'))
                 else:
                     return JsonResponse({'error': 'Account is not activated yet!'}, status=401)
             else:
