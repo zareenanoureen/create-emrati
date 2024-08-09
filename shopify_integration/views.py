@@ -4,7 +4,7 @@ from django.conf import settings
 import shopify
 from django.urls import reverse
 import urllib.parse
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from . import shopify_settings
 from django.http import JsonResponse
 from .models import CustomUser
@@ -46,30 +46,29 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        hashed_password = make_password(password)
-        print(f"Attempting to sign in with email: {email}")
-        if email is None or password is None:
-            return error_response('Email and password REQUIRED!')
-        print("password", hashed_password)
-        user = authenticate(request, username=email, password=hashed_password)
-        print(f"Authenticated user: {user}")
-        if user is not None:
-            try:
-                user = CustomUser.objects.get(email=email)
-                print(f"Is user active? {user.is_active}")  # Debugging: Check if the user's account is active
-            except CustomUser.DoesNotExist:
-                return JsonResponse({'error': 'User does not exist'}, status=401)
-            if user.is_active:
-                login(request, user)
-                print(request.user)
-             
-                return redirect(reverse('install-app'))
-            else:
-                return JsonResponse({'error': 'Account is not activated yet!'}, status=401)
-        else:
-            return JsonResponse({'error': 'Invalid credentials'}, status=401)
-    return render(request, 'shopify_integration/auth-login.html')
 
+        if email is None or password is None:
+            return JsonResponse({'error': 'Email and password REQUIRED!'}, status=400)
+
+        try:
+            user = CustomUser.objects.get(email=email)
+            print(f"Retrieved user: {user}")
+            print(f"User password (hashed): {user.password}")
+
+            # Check the provided password against the stored hashed password
+            if check_password(password, user.password):
+                if user.is_active:
+                    login(request, user)
+                    return redirect(reverse('install-app'))
+                else:
+                    return JsonResponse({'error': 'Account is not activated yet!'}, status=401)
+            else:
+                return JsonResponse({'error': 'Invalid credentials'}, status=401)
+
+        except CustomUser.DoesNotExist:
+            return JsonResponse({'error': 'User does not exist'}, status=401)
+    
+    return render(request, 'shopify_integration/auth-login.html')
 
 def signout(request):
     logout(request)
