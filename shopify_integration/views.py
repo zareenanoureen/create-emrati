@@ -47,7 +47,7 @@ def signin(request):
         password = request.POST.get('password')
         if email is None or password is None:
             return error_response('Email and password REQUIRED!')
-        user = authenticate(email=email, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
