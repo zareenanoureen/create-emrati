@@ -4,6 +4,7 @@ from django.conf import settings
 import shopify
 from django.urls import reverse
 import urllib.parse
+from django.contrib.auth.hashers import make_password
 from . import shopify_settings
 from django.http import JsonResponse
 from .models import CustomUser
@@ -45,10 +46,12 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        hashed_password = make_password(password)
         print(f"Attempting to sign in with email: {email}")
         if email is None or password is None:
             return error_response('Email and password REQUIRED!')
-        user = authenticate(email=email, password=password)
+        print("password", hashed_password)
+        user = authenticate(request, username=email, password=hashed_password)
         print(f"Authenticated user: {user}")
         if user is not None:
             try:
