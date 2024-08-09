@@ -2,8 +2,78 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.conf import settings
 import shopify
+from django.urls import reverse
 import urllib.parse
 from . import shopify_settings
+from django.http import JsonResponse
+from .models import CustomUser, UserProfile
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from .utils import error_response
+from django.db import DatabaseError
+
+
+@csrf_exempt
+def signup(request):
+    print(request.method)
+    if request.method == 'POST':
+        try:
+            email = request.POST.get('email')
+            username = request.POST.get('username')
+            phone_number = request.POST.get('phone_number')
+            password = request.POST.get('password')
+            confirm_password = request.POST.get('confirm_password')
+            print(email, username)
+            if password != confirm_password:
+                return error_response('Passwords do not match')
+
+            if CustomUser.objects.filter(email=email).exists():
+                return error_response('Email already exists')
+
+            user = CustomUser.objects.create_user(email=email, username=username, phone_number=phone_number, password=password, is_active=True)
+            print(user)
+            return render(request, 'shopify_integration/auth-login.html')
+        except DatabaseError as e:
+            return JsonResponse({'error': f'Database error: {e}'}, status=500)
+        except Exception as e:
+            return JsonResponse({'error': f'An error occurred: {e}'}, status=500)
+    return render(request, 'shopify_integration/auth-register.html')
+
+
+@csrf_exempt
+def signin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        if email is None or password is None:
+            return error_response('Email and password REQUIRED!')
+        user = authenticate(email=email, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                print(request.user)
+                try:
+                    profile = user.userprofile
+                    print(profile)
+                    if UserProfile:
+                        return redirect(reverse('home'))  # Assuming UserProfile is related as user.userprofile
+                except UserProfile.DoesNotExist:
+                    profile = None
+                if profile and profile.business_description and profile.industry and profile.location:
+                    return redirect(reverse('home'))  # Redirect to tabs page if profile is complete
+                else:
+                    return redirect(reverse('install-app'))
+            else:
+                return JsonResponse({'error': 'Account is not activated yet!'}, status=401)
+        else:
+            return JsonResponse({'error': 'Invalid credentials'}, status=401)
+    return render(request, 'shopify_integration/auth-login.html')
+
+
+def signout(request):
+    logout(request)
+    return redirect('signin')
+
 
 def install_app(request): 
     shop = request.GET.get('shop')
