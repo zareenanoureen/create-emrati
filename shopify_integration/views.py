@@ -31,7 +31,7 @@ def signup(request):
                 return error_response('Email already exists')
 
             user = CustomUser.objects.create_user(email=email, username=username, phone_number=phone_number, password=password, is_active=True)
-            print(user)
+            print(f"User created: {user.email}")
             return render(request, 'shopify_integration/auth-login.html')
         except DatabaseError as e:
             return JsonResponse({'error': f'Database error: {e}'}, status=500)
@@ -45,9 +45,11 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        print(f"Attempting to sign in with email: {email}")
         if email is None or password is None:
             return error_response('Email and password REQUIRED!')
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(email=email, password=password)
+        print(f"Authenticated user: {user}")
         if user is not None:
             try:
                 user = CustomUser.objects.get(email=email)
