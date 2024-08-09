@@ -7,5 +7,5 @@ urlpatterns = [
     path('signout/', signout, name='logout'),
     path('install/', install_app, name='install_app'),
     path('callback/', callback, name='callback'),
-    path('', home, name='home'),
+    path('home/', home, name='home'),
 ]
