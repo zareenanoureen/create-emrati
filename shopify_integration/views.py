@@ -6,7 +6,7 @@ from django.urls import reverse
 import urllib.parse
 from . import shopify_settings
 from django.http import JsonResponse
-from .models import CustomUser, UserProfile
+from .models import CustomUser
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from .utils import error_response
