@@ -48,7 +48,7 @@ def signin(request):
         print(f"Attempting to sign in with email: {email}")
         if email is None or password is None:
             return error_response('Email and password REQUIRED!')
-        user = authenticate(username=email, password=password)
+        user = authenticate(email=email, password=password)
         print(f"Authenticated user: {user}")
         if user is not None:
             try:
