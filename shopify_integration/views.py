@@ -49,6 +49,11 @@ def signin(request):
             return error_response('Email and password REQUIRED!')
         user = authenticate(request, email=email, password=password)
         if user is not None:
+            try:
+                user = CustomUser.objects.get(email=email)
+                print(f"Is user active? {user.is_active}")  # Debugging: Check if the user's account is active
+            except CustomUser.DoesNotExist:
+                return JsonResponse({'error': 'User does not exist'}, status=401)
             if user.is_active:
                 login(request, user)
                 print(request.user)
