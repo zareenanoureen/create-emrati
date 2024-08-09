@@ -24,10 +24,10 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
-    objects = CustomUserManager()
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'phone_number']
+
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.email
