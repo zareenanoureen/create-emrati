@@ -52,17 +52,8 @@ def signin(request):
             if user.is_active:
                 login(request, user)
                 print(request.user)
-                try:
-                    profile = user.userprofile
-                    print(profile)
-                    if UserProfile:
-                        return redirect(reverse('home'))  # Assuming UserProfile is related as user.userprofile
-                except UserProfile.DoesNotExist:
-                    profile = None
-                if profile and profile.business_description and profile.industry and profile.location:
-                    return redirect(reverse('home'))  # Redirect to tabs page if profile is complete
-                else:
-                    return redirect(reverse('install-app'))
+             
+                return redirect(reverse('install-app'))
             else:
                 return JsonResponse({'error': 'Account is not activated yet!'}, status=401)
         else:
