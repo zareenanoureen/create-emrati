@@ -1,0 +1,920 @@
+{% extends 'login_and_register/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <title>ZUHD Store - Bespoke Islamic Apparels | Online Stitching & Measurement</title>
+ <meta name="description" content="ZUHD Store - One stop solution & online platform for custom Islamic apparels. Get Tailored Online your Kandora, Jalabiya, Salwar Kameez & accessories. ZUHD Online">
+ <meta name="keywords" content="online islamic apparel, custom islamic apparel, online kandora solution, online salwar kameez for men, online jalabiya, online islamic apparel for men">
+ <meta property="og:title" content="ZUHD Store - Bespoke Islamic Apparels | Online Stitching & Measurement">
+  <meta property="og:description" content="One stop solution & online platform for custom Islamic apparels. Get Tailored Online your Kandora, Jalabiya, Salwar Kameez & accessories. ZUHD Online">
+  <meta property="og:image" content="front/assets/images/zuhd_banner_img.png">
+  <meta property="og:url" content="https://www.zuhd.store/">  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@zuhdstore" />
+  <meta name="twitter:creator" content="@zuhdstore" />
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/ico" href="front/assets/favicon.ico">
+    <!-- CSS -->
+    <link    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+   
+    <link rel="stylesheet" href="front/assets/css/m-style.css">
+     <link rel="stylesheet" href="front/assets/css/style.css">
+    <link rel="stylesheet" href="front/assets/css/new-style.css">
+    <link rel="stylesheet" href="front/assets/css/responsive.css">
+    <link rel="stylesheet" href="front/assets/css/intlTelInput.css">
+    <link rel="stylesheet" href="front/assets/css/demo.css">
+    <link href="ajax/libs/intl-tel-input/11.0.14/css/intlTelInput.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" href="tvr5psx.css">
+
+
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="ajax/libs/font-awesome/5.10.0/css/all.min.css">
+
+    <script type="text/javascript" src="front/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="front/assets/js/jquery.validate.js"></script>
+    <script src="ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+    <script src="ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+    <!-- sweetalert -->
+    <link rel="stylesheet" type="text/css"
+        href="ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
+
+<!-- Google tag (gtag.js) -->
+<script async src="gtag/js?id=AW-11013218013"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11013218013');
+</script>
+
+<!-- Google Tag Manager -->
+
+
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PSP7867');
+    </script>
+<!-- End Google Tag Manager -->
+
+<script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++
+    )ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    
+      ttq.load('CDQ9VOBC77U1K1QEN3VG');
+      ttq.page();
+    }(window, document, 'ttq');
+</script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="gtag/js?id=G-ESX7GMV2Z9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ESX7GMV2Z9');
+</script>
+<style>
+     .searchbar {
+            width: 100%;
+            max-width: 300px;
+            display: inline-flex;
+            margin-top: 20px;
+        }
+
+        .searchbar--max-width {
+            max-width: 100%;
+        }
+        
+        .searchbar__input::placeholder {
+            background-color: #FFF;
+            border-radius: 0;
+            color: gray !important;
+            text-transform: uppercase;
+            align-items: center;
+            display: inline-flex;
+            transition: all .5s;
+            justify-content: center;
+            transition: all 1s ease;
+            font-size: 16px!important;
+            font-family: 'Proxima Pro light' !important;
+        }
+
+        .searchbar__input {
+            flex-grow: 1;
+            padding: 12px;
+            outline: none;
+            border: 1px solid #c3922e;
+            border-radius: 5px 0 0 5px;
+            background: #fff;
+            transition: background 0.25s, box-shadow 0.25s;
+        }
+
+        .searchbar__input:focus {
+            background: white;
+            
+        }
+        .searchbar__button {
+            width: 40px;
+            background: #c3922e;
+            color: #ffffff;
+            outline: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .searchbar__button:active {
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25);
+        }
+    .lineanimate {
+        width: 80px;
+    }
+    .zuhd_loading {
+            display: none;
+            position: fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )  
+                        url(loader/loaderblue.gif) 
+                          50% 50%
+                          no-repeat;
+
+        }
+
+
+     /* LAST CSS */
+     .main-header{
+	background: #fff;
+	margin:0;
+}
+ul li{
+  list-style-type: none
+}
+.caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+  text-decoration: none;
+  background: #B9B7B7 !important;
+  color: #fff;
+}
+.dropdown-menu{
+	padding:0px 0px !important;  
+	left: 32% !important;
+}
+
+.stripe {
+  height: 70px;
+}
+div.burger-click-region {
+	width: 50px;
+	height: 50px;
+	display: block;
+	position: sticky;
+	top: 10px;
+	right: 0;
+	cursor: pointer;
+	
+	z-index:9999;
+}
+.burger-click-region.active span{
+	display:none;
+} 
+.burger-click-region span {
+	color: #000;
+	background: #fff;
+	position: absolute;
+	line-height: 50px;
+	font-size: 16px;
+	right: 50px;
+	padding: 0 10px;
+	display: inline-block;
+	height: 50px;
+	width: 105%;
+}
+div.burger-click-region .bun,
+div.burger-click-region .meat {
+	width: 30px;
+	height: 4px;
+	border-radius: 0%;
+	background-color: #C3922E;
+	position: absolute;
+	transition: all 600ms ease-in-out;
+	-webkit-transition: all 600ms ease-in-out;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+div.burger-click-region .top {
+  top: 12px;
+}
+div.burger-click-region .meat {
+  top: 50%;
+  margin-top: -3px;
+}
+div.burger-click-region .bottom {
+  bottom: 13px;
+}
+/*div.sburger-click-region:hover .top {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 18px;
+  top: 17px;
+}*/
+div.burger-click-region.active .top {
+  transform: rotate(-405deg);
+  -webkit-transform: rotate(-405deg);
+  width: 35px;
+  top: 35%;
+}
+div.burger-click-region.active .top,
+div.burger-click-region.active .bottom {
+  transition: all 800ms ease-in-out;
+}
+/*div.burger-click-region:hover .meat {
+  width: 22px;
+  margin-left: -10px;
+}*/
+div.burger-click-region.active .meat {
+  width: 0px;
+  margin-left: 0px;
+}
+/*div.burger-click-region:hover .bottom {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 18px;
+  bottom: 17px;
+}*/
+div.burger-click-region.active .bottom {
+  transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+  width: 35px;
+  bottom: 55%;
+}
+
+	.super-container {
+	  position: relative;
+    height:100%;
+	}
+	.slide-container {
+	  position: fixed;
+	  text-align: center;
+    height:100%;
+    right:0;
+	}
+	a.toggle {
+	  position: relative;
+	  top: 30px;
+	}
+	.menu {
+	  width: 200px;
+      background-color: #dfa42cf2;
+	  position: absolute;
+	  top: 0;
+    right: -200px;
+	  margin: 0;
+	  text-align: left;
+	  z-index:99;
+    height:100%;
+	}
+.menu.active{
+  right:0;
+  background: #dfa42cf2;
+  width: 100vw;
+  height: 100vh;
+  top: -8px;
+}
+	.m-custom a {
+		transition: all 200ms ease-in-out;
+		-webkit-transition: all 200ms ease-in-out;
+		/* text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff; */
+		
+		color: #dfa42cf2;
+	  text-decoration: none;
+	  display: block;
+	  line-height: 1.1;
+	  
+	  font-weight: 800;
+	  text-align: right;
+	  font-size: 75px;
+	  
+	  -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: #fff;
+    -webkit-text-stroke-width: 0.025em;
+	}
+	.cart-icon{
+		width: 20px;
+    right: 73px;
+    top: 16px;
+    position: relative;
+    color: #fff;
+    z-index: 99;
+	}
+	.menu a:first-child {
+	  border-top: none;
+	}
+	.m-custom{
+		margin-top: 10%;
+		width: 70vw;
+		padding: 0px 50px 0px 0px;
+	}
+	.menu-first{
+		margin-top: 5%;
+		width: 30vw;
+		align-items: center;
+    display: flex;
+	}
+	.m-custom a:hover {
+		-webkit-text-fill-color: #ffffffef;
+    -webkit-text-stroke-color: #fff;
+    -webkit-text-stroke-width: 0.02em;
+	opacity: .8;
+    margin-right: 70px;
+	
+		
+	}
+	.slide-container, .menu {
+		transition: right 300ms ease-out;
+		-webkit-transition: right 300ms ease-out;
+	}
+	.menu-on .slide-container {
+	  left: -200px;
+	}
+	div.burger-click-region{
+		z-index: 999;
+		width: 50px;
+		right: 0px;
+	}
+	/* .menu ul{
+		background: #273d52;
+		padding:0px;
+	} */
+	.dropbtn{
+		color: #fff;
+		padding: 12px 15px;
+	}
+	.dropdown-content{
+		padding-left: 10px;
+	}
+	.hamburger-box span{
+		right: 55px;
+	}
+	.hamburger-box.active {
+		top:0;
+		background: #d49c2a;
+	}
+	.hamburger-box.active .bun{
+		background: #fff;
+	}
+	div.hamburger-box.active .top, div.hamburger-box.active .bottom {
+		right: 45px;
+		top: 35px;
+	}
+	.contact {
+		border-left: 1px dashed #fff;
+		margin: 0px 0 0px 50px;
+
+	}
+	.contact ul {
+		list-style: none;
+		padding: 0;
+	}
+	.contact li:first-child {
+		padding-top: 20px;
+	}
+	.contact ul li {
+		font-size: 22px;
+		text-align: left;
+		padding-left: 24px;
+		color: #fff;
+		padding-bottom: 30px !important;
+	}
+	.contact ul li .title {
+		font-weight: bold;
+		margin: 0;
+		font-size: 20px;
+		text-transform: uppercase;
+		font-family: "trajan-pro-3" !important;
+	}
+	.contact ul li p {
+		font-weight: 400;
+		margin: 0;
+		opacity: .8;
+	}
+	.contact ul li p span {
+		display: block;
+	}
+	.contact ul li a {
+		color: #fff;
+		font-weight: 400;
+		padding-right: 8px;
+		opacity: .8;
+		text-decoration: none;
+	}
+	.contact ul li:nth-child(2) {
+		display: flex;
+		align-items: end;
+	}
+	.mobile-list a{
+		text-decoration: none;
+		margin-left: 10px;
+	}
+	.title-h4{
+		display: flex;
+	}
+	.m-left-10{
+		margin-left: 10px;
+	}
+	.contact ul li:last-child a {
+		border-right: 2px solid #fff;
+	}
+.logo {
+		
+		display: block;
+		margin: 10px auto 0;
+	}
+ .logo {
+		transition: all 1s;
+		width: 75px !important;
+	}
+    .intro{
+    position: fixed !important;
+    top: 42px;
+    }
+    span.cart-notify {
+    -webkit-text-fill-color: #C3922E !important;}
+</style>
+
+
+
+<body class="first-active fp-view">
+<!-- Google Tag Manager (noscript) -->
+
+<noscript>
+    <iframe src="ns.html?id=GTM-PSP7867" height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sidebar">
+        
+        <div class="super-container">
+            <div class="slide-container">
+                <div class="stripe toggle-nav js-nav">
+                    <div class="hamburger-box">
+                        <div class="bun top"></div>
+                        <div class="meat"></div>
+                        <div class="bun bottom"></div>
+                    </div>
+                    
+                </div>
+                <div class="nav-wrap">
+                    <nav class="menu" >
+                    <div class="d-lg-flex ">
+                    <div class="menu-first order-2 order-lg-1">
+                        <div class="contact  d-none d-lg-block">
+                        <ul>
+                            <li>
+                                <h4 class="title">Address</h4>
+                                <p class="sidebar-address">
+                                <span>
+                                29 Newhaven Dr, Williams Landing VIC 3027
+                                </span>
+                                <span> Australia</span>
+                                </p>
+                            </li>
+                            <li class="pb-2 mb-0 mobile-list">
+                            <h4 class="title">Contact:</h4>
+                            <a href="tel:+61291000100">+61291000100</a>
+                            <p>/</p>&nbsp;
+                            <a href="tel:+61488899900">+61488899900</a>
+                            </li>
+                            <li class="title-h4">
+                                <h4 class="title">Email:</h4>
+                                <a href="mailto:info@zuhd.store" class="m-left-10">info@zuhd.store</a><p></p>
+                            </li>
+                            <li>
+                                <h4 class="title">Social</h4>
+                                <a href="https://www.facebook.com/zuhd.store">Facebook</a>
+                                <a href="https://instagram.com/zuhd.store?utm_medium=copy_link">Instagram</a>
+                                <a href="https://www.tiktok.com/@zuhd.store">Tiktok</a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <ul class="m-custom order-1 order-lg-2">
+                        <li class="sidetext" data-splitting>
+                             <a href="https://www.style.zuhd.store">HOME</a>
+                        </li>
+                        <li class="sidetext" data-splitting>
+                            <a href="choose-style/emirati">CREATE YOUR STYLE </a>
+                        </li>
+                        <li class="sidetext" data-splitting>
+                            <a href="how-it-works">HOW IT WORK</a>
+                        </li>
+                         <li class="sidetext" data-splitting>
+                                <a href="https://zuhd.store/">ACCESSORIES</a>
+                            </li>
+                        <li class="sidetext" data-splitting>
+                            <a href="request-stylist">REQUEST STYLIST</a>
+                        </li>
+                        <li class="sidetext" data-splitting>
+                                                            <a href="login">SIGN IN</a>
+                                                    </li>
+                        <li class="sidetext" data-splitting>
+                            <a href="cart">CART <div class="cart-no"><span
+                                        class="cart-notify">0</span></div></a>
+                        </li>
+                    </ul>
+                    <div class="contact d-block d-lg-none  padding-mobile">
+                            <ul>
+                                <li class="text-center pb-0">
+                                    <h4 class="title">Address</h4>
+                                    <p class="sidebar-address">
+                                    <span>
+                                    29 Newhaven Dr, Williams Landing VIC 3027
+                                    </span>
+                                    <span> Australia</span>
+                                    </p>
+                                </li>
+                                <li class="d-none"></li>
+                                <li class="text-center ">
+                                <h4 class="">Contact:</h4>
+                                <span class="d-flex justify-content-center">
+                                <a href="tel:+61291000100">+61291000100</a>
+                                <p>/</p>&nbsp;
+                                <a href="tel:+61488899900">+61488899900</a>
+                                </span>
+                                </li>
+                                <li class="title-h4 text-center justify-content-center">
+                                    <h4 class="title">Email:</h4>
+                                    <a href="mailto:info@zuhd.store" class="m-left-10">info@zuhd.store</a><p></p>
+                                </li>
+                                <li class="text-center">
+                                    <h4 class="title">Social</h4>
+                                    <a href="https://www.facebook.com/zuhd.store">Facebook</a>
+                                    <a href="https://instagram.com/zuhd.store?utm_medium=copy_link">Instagram</a>
+                                    <a href="https://www.tiktok.com/@zuhd.store">Tiktok</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+<style type="text/css">
+        .padding-mobile ul li {
+             padding-bottom: 10px !important;
+                    }
+                    .overflow-auto{
+                        overflow: auto;
+                    }
+                    @media(max-width : 767px) {
+                        /* .top-nav {
+            position: fixed;
+            top: 60px;
+        } */
+
+        body.open-menu .top-nav {
+            top: 0 !important;
+        }
+
+        span.cart-notify {
+    height: 33px;
+    width: 33px;
+}
+.cart-no {
+    top: -2px;
+    left: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+        .m-custom {
+            width: 100vw !important;
+            padding: 0px !important;
+            text-align: center !important;
+        }
+        /* .top-nav {
+    position: fixed;
+    top: 40px !important;
+} */
+.top-nav.active {
+    top: 0px !important;
+    height: 80px !important;
+}
+body.open-menu .top-nav {
+    top: 0 !important;
+    position: fixed !important;
+    background: #0000002e;
+    height: 80px;
+}
+.m-custom a {
+    text-align: center !important;
+    font-size: 24px !important;
+    line-height: 34px !important;
+}
+.contact ul li .title {
+    font-size: 16px !important;
+}
+.contact ul li {
+    font-size: 14px !important;
+}
+.m-custom {
+    margin-top: 30% !important;
+}
+.contact {
+    margin: 0px !important;
+}
+                        .contact ul li .title {font-size: 16px;}
+                        .contact ul li {
+    font-size: 14px;
+}
+        .top-nav {
+            position: fixed;
+            top: 60px;
+        }
+
+        body.open-menu .top-nav {
+            top: 0 !important;
+        }
+
+        .m-custom{
+            width: 100vw !important;
+            padding: 0px !important;
+            text-align: center !important;
+        }
+        .contact{
+        	margin: 0px;
+        }
+    }
+
+    </style>
+
+    <div class="top-nav no-before inner-page-header">
+        <div class="logo-nav">
+            <a href="https://www.style.zuhd.store">
+                <img class="logo" src="front/assets/images/header-logo-black.svg" alt="">
+                <!-- <img class="logo gif" src="front/assets/images/ZUHD-Logo-Design.gif" alt=""> -->
+            </a>
+        </div>
+        <div class="navbar">
+            <div class="d-flex align-items-center">
+                <div class="social">
+                    <a href="https://www.facebook.com/zuhd.store">
+                        <i class="icon icon-fb"></i>
+                    </a>
+                    <a href="https://instagram.com/zuhd.store?utm_medium=copy_link">
+                        <i class="icon icon-insta"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@zuhd.store">
+                        <i class="icon icon-tik-tok"></i>
+                    </a>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="burger-click-region"  onclick="haminate()">
+                         <div class="bun top"></div>
+            <div class="meat"></div>
+            <div class="bun bottom"></div>
+                        <!-- <span class="burger-menu-piece top"></span>
+                        <span class="burger-menu-piece middle"></span>
+                        <span class="burger-menu-piece bottom"></span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- main content -->
+    <style type="text/css">
+  .logo-nav{
+    left:54%;
+  }
+  .navbar i{
+    color:#C3922E !important;
+  }
+  .navbar i{
+    color:#C3922E !important;
+  }
+  .open-menu .navbar i{
+    color:#ffffff !important;
+  }
+  .burger-menu-piece{
+    color:#C3922E !important;
+  }
+   .log-in-bg ul {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between; }
+    .log-in-bg ul li {
+      display: inline-block;
+      width: 35%; }
+      .log-in-bg ul li:nth-child(2) {
+        float: right;
+        width: 55%; }
+        @media  screen and (max-width : 600px){
+          .logo-nav .logo{
+            filter:none;
+          }
+          .mobile-mt-5{
+            margin-top:4rem;
+          }
+        }
+        .password-input{
+   padding-right:15px;
+  }
+</style>
+
+
+  <div class="wrapper-login mobile-mt-5">
+    <section class="zuhd-sec ">
+      <div class="container-fluid ">
+        <div class="row login-row">
+          <div class="col-lg-6 login-form-screen" style="background-image:url('./front/assets/images/sign-banner.png')" >
+            <form method="Post" class="login-screen" action="{% url 'login' %}">
+                  <input type="hidden" name="_token" value="ZPvqIHkXjReOoiReMrVuFYSCFvF7EljZu9yCYVgH">                      
+                    <input type="email" placeholder="Email Address" class="emptyonly form-control " name="email" value="" required>
+                    <div style="position: relative;">
+                     <input id="password" type="password" placeholder="Password" class="form-control "  name="password" required autocomplete="current-password">
+                      <span class="show-hide-password js-show-hide has-show-hide"><i class="icon-hidden"></i></span>
+                                          </div>
+                    <div class="login-suppoer-sec">
+                      <label for="remember-me" class="remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <span class="checkmark"></span>
+                        <span>Remember me</span>
+                      </label>
+                      <a class="btn forget-pass-btn" data-toggle="modal" data-target="#forgot-password-modal">Forgot Password</a>
+                    </div>
+                    <ul class="submission-btn">
+                      <li><button type="submit" class="btn log-in-btn">Sign in</button></li>
+                    </ul>
+                  </form>     
+          </div>
+          <div class="col-lg-6 ml-auto mt-5 mt-lg-0 p-0 log-in-bg d-flex justify-content-center login-bg-screen">
+          <div class="stepbox align-self-center ">
+              <h2 class="primarytxt txt text-white" data-splitting>SIGN INTO </h2>
+              <h1 class="primarytxt heading text-white" data-splitting>YOUR ACCOUNT</h1>
+              <div class="btns-group">
+                <a href="{% url 'signup' %}" class="btn btn-dash w-100 mb-0 register-now-btn">REGISTER NOW <i class="icon icon-right-arrow"></i></a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+ <!--  modal -->
+    <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="add-password" aria-hidden="true" style="border-radius:0px;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form method="post" action="forgot-password" id="forgotPasswordForm">
+        <input type="hidden" name="_token" value="ZPvqIHkXjReOoiReMrVuFYSCFvF7EljZu9yCYVgH">        <div class="modal-content reset-password-1">
+          <div class="modal-header">
+            <h5 class="modal-title" id="add-password">Reset Password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row" style="margin-top:40px;">
+              <div class="form-group col-md-12">
+                <input type="email" name="email" class="form-control" placeholder="Enter Email Address" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer"><button type="submit" class="btn forgot-btn">SUBMIT</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+      $(document).ready(()=>{
+    $(".logo").attr('src','./front/assets/images/header-logo.svg')
+  })
+
+  //
+   $(document).ready(function(){
+    $(document.body).addClass('signinpg');
+    }); 
+
+    //forgot password
+     $("#forgotPasswordForm").validate({
+      rules:{
+       email:{
+        required:true,
+        remote: {
+                  data:{"email":$(".email" ).val(),'_token': 'ZPvqIHkXjReOoiReMrVuFYSCFvF7EljZu9yCYVgH'},
+                  url: "is_email_exist",
+                  type: "post"
+                }
+      },  
+     },
+      errorPlacement: function(error, element) 
+     {
+
+      error.insertAfter(element);
+     },
+     messages:{
+      email:{
+        required:'Please Enter Email',
+        remote:"Invalid Email !"
+      }   
+   }
+  });
+  </script>
+    <!-- ./main content -->
+    <!-- footer -->
+    <svg class="arrow-down">
+        <path
+            d="M12 18c-.2 0-.5-.1-.7-.3l-11-10c-.4-.4-.4-1-.1-1.4.4-.4 1-.4 1.4-.1l10.4 9.4 10.3-9.4c.4-.4 1-.3 1.4.1.4.4.3 1-.1 1.4l-11 10c-.1.2-.4.3-.6.3z" />
+    </svg>
+
+    </div>
+    <script>
+        var burger = $(".burger-click-region");
+        burger.on("click", function (e) {
+            // $(this).toggleClass("active");
+            $('.js-nav').parent().find('.menu').toggleClass('active');
+        });
+        // $(document).ready(function(){
+        //     $(".burger-click-region").click(function(){
+        //         $(".navbar").toggleClass("intro");
+        //         $(".logo-nav").toggleClass("intro");
+        //     });
+        // });
+    </script>
+    <div id="mob-scr"></div>
+    <script src="front/assets/js/mlib.js"></script>
+    <script src="front/assets/js/function.js"></script>
+    <script src="front/assets/js/wow.js"></script>
+    <script src="front/assets/js/custom.js"></script>
+    <script src="front/assets/js/intlTelInput.js"></script>
+
+
+ 
+    <!--close phone input -->
+
+    <!-- FONT_AWESOME_JS_CDN -->
+    <script src="ajax/libs/font-awesome/5.10.0/js/all.min.js"></script>
+
+
+    
+    
+    
+</body>
+
+</html>
+{% endblock %}

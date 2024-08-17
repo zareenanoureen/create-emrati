@@ -8,4 +8,5 @@ urlpatterns = [
     path('install/', install_app, name='install_app'),
     path('callback/', callback, name='callback'),
     path('home/', home, name='home'),
+    
 ]
