@@ -37,10 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # 'daphne', 
     'django.contrib.staticfiles',
     'shopify_integration',
     'emiratipublicpage',
+    'admin_panel',
+    'django.contrib.humanize',  # For human-friendly data formatting
+    'rest_framework',  # For building APIs
+    'django_filters',  # For filtering in the admin panel
+    # 'channels',
 ]
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / "media"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +148,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+# ASGI_APPLICATION = 'myshopifyapp.asgi.application'
+
+# # Example configuration for Redis
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     },
+# }
+

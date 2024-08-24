@@ -1,0 +1,31 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block content %}
+<h1>Customizations</h1>
+<a href="{% url 'customization-add' %}" class="btn btn-success mb-3">Add New Customization</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Color</th>
+            <th>Fabric</th>
+            <th>Embroidery</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customization in customizations %}
+        <tr>
+            <td>{{ customization.product.product_name }}</td>
+            <td>{{ customization.get_color_display }}</td>
+            <td>{{ customization.get_fabric_display }}</td>
+            <td>{{ customization.get_embroidery_display }}</td>
+            <td>
+                <a href="{% url 'customization-edit' customization.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'customization-delete' customization.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

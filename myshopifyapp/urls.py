@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shopify/', include('shopify_integration.urls')),
+    path('', include('shopify_integration.urls')),
     path('emirati/', include('emiratipublicpage.urls')),
+    path('admin_panel/', include('admin_panel.urls')),
 ]

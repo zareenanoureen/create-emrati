@@ -1,0 +1,103 @@
+{% extends "admin_panel/base.html" %}
+{% block content %}
+<div class="order-summary">
+    <h1>Orders</h1>
+    <div class="order-stats row mb-4">
+        <div class="total-orders">
+            <h2>{{ total_orders }}</h2>
+            <p>Total Orders</p>
+        </div>
+        <div class="pending-orders">
+            <h2>{{ pending_orders }}</h2>
+            <p>Pending Orders</p>
+        </div>
+        <div class="delivered-orders">
+            <h2>{{ delivered_orders }}</h2>
+            <p>Delivered Orders</p>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="filters">
+        <input type="text" placeholder="Enter name or phone" name="search" />
+        <select name="status">
+            <option value="all">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Dispatched">Dispatched</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Canceled">Canceled</option>
+        </select>
+        <input type="date" name="from_date" />
+        <input type="date" name="to_date" />
+        <button class="btn btn-primary">Filter</button>
+        <button class="btn btn-success">Export to Excel</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Order Id</th>
+                <th>Items</th>
+                <th>Customer</th>
+                <th>Total Paid</th>
+                <th>Order Status</th>
+                <th>Delivery Status</th>
+                <th>Tracking ID#</th>
+                <th>Assigned to Tailor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.id }}</td>
+                <td>{{ order.items_json }}</td>
+                <td>Name: {{ order.first_name }} {{ order.last_name }}<br>Contact No.: {{ order.phone_number }}</td>
+                <td>USD {{ order.total_paid }}</td>
+                <td>
+                    <span class="badge badge-status">{{ order.status }}</span>
+                </td>
+                <td>{{ order.delivery_status }}</td>
+                <td>{{ order.tracking_number }}</td>
+                <td>{{ order.assigned_tailor }}</td>
+                <td>
+                    <select name="status" class="form-control" onchange="changeStatus({{ order.id }}, this.value)">
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Canceled">Canceled</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="In Transit">In Transit</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function changeStatus(orderId, newStatus) {
+    fetch(`/change-order-status/${orderId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({
+            'status': newStatus,
+        })
+    }).then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              alert("Status updated successfully!");
+              location.reload();
+          } else {
+              alert("Failed to update status.");
+          }
+      });
+}
+
+</script>
+{% endblock %}

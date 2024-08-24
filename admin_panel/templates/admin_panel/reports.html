@@ -1,0 +1,40 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block content %}
+<h1>Reports</h1>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Customer Report</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Total Customers: {{ total_customers }}
+            </li>
+            <li class="list-group-item">
+                Active Customers: {{ active_customers }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h3>Order Report</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Total Orders: {{ total_orders }}
+            </li>
+            <li class="list-group-item">
+                Completed Orders: {{ completed_orders }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h3>Product Report</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Total Products: {{ total_products }}
+            </li>
+            <li class="list-group-item">
+                Top Selling Product: {{ top_selling_product.product_name }} ({{ top_selling_product.order_count }} orders)
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

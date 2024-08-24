@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Customers</h1>
+
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-black" style="background-color: #d7f1ea;">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ total_customers }}</h3>
+                        <p class="card-text text-center">Customers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-black" style="background-color: #f1d7eb;">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ active_customers }}</h3>
+                        <p class="card-text text-center">Active Customers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-black" style="background-color: #d7e7f1;">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ inactive_customers }}</h3>
+                        <p class="card-text text-center">Inactive Customers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Form -->
+        <form method="GET" class="mb-4">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="search">Search by name or phone</label>
+                    <input type="text" name="search" class="form-control" placeholder="Enter name or phone" value="{{ request.GET.search }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="status">Status</label>
+                    <select name="status" class="form-control">
+                        <option value="all" {% if request.GET.status == 'all' %}selected{% endif %}>All</option>
+                        <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Active</option>
+                        <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="order_by">Order By</label>
+                    <select name="order_by" class="form-control">
+                        <option value="firstname" {% if request.GET.order_by == 'firstname' %}selected{% endif %}>First Name</option>
+                        <option value="lastname" {% if request.GET.order_by == 'lastname' %}selected{% endif %}>Last Name</option>
+                        <option value="email" {% if request.GET.order_by == 'email' %}selected{% endif %}>Email</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="from_date">From date</label>
+                    <input type="date" name="from_date" class="form-control" placeholder="From date" value="{{ request.GET.from_date }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="to_date">To date</label>
+                    <input type="date" name="to_date" class="form-control" placeholder="To date" value="{{ request.GET.to_date }}">
+                </div>
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-dark btn-block">Filter</button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- Customers List -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Country</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.firstname }}</td>
+                        <td>{{ customer.lastname }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.phone_number }}</td>
+                        <td>{{ customer.country }}</td>
+                        <td>
+                            <select class="status-dropdown" data-customer-id="{{ customer.pk }}">
+                                <option value="active" {% if customer.is_active %}selected{% endif %}>Active</option>
+                                <option value="inactive" {% if not customer.is_active %}selected{% endif %}>Inactive</option>
+                            </select>
+                        </td>
+                        <td>
+                            <a href="{% url 'customer-detail' customer.pk %}">View</a>
+                            <a href="{% url 'customer-edit' customer.pk %}">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('change', function() {
+                const customerId = this.getAttribute('data-customer-id');
+                const status = this.value;
+        
+                fetch(`/update-customer-status/${customerId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `status=${status}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status !== 'success') {
+                        alert('Failed to update status');
+                    }
+                });
+            });
+        });
+        </script>
+</body>
+</html>

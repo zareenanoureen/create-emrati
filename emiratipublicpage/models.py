@@ -26,10 +26,10 @@ class CustomUser(AbstractBaseUser):
     firstname = models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
-    password = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=255, blank=True, null=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)  # Updated default to True
     is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -48,6 +48,7 @@ class CustomUser(AbstractBaseUser):
 
     class Meta:
         db_table = 'Customer'
+
 
 
 # class Preference(models.Model):
@@ -100,47 +101,58 @@ class Products(models.Model):
 
 class Customization(models.Model):
     product = models.OneToOneField(Products, on_delete=models.CASCADE)
-    class color(models.TextChoices):
-        BLACK = 'b', _('Black')
-        WHITE = 'w', _('White')
-        BLUE = 's', _('Blue')
-    color = models.CharField(
-        max_length=1,
-        choices=color.choices,    
-    )
-    class fabric(models.TextChoices):
-        COTTON = 'c', _('Cotton')
-        SILK = 's', _('Silk')
-        GEORGETTE = 'g', _('Georgette')
-    fabric = models.CharField(
-        max_length=1,
-        choices=fabric.choices,    
-    )
-    class embroidery(models.TextChoices):
-        YES = 'y', _('Yes')
-        NO = 'n', _('No')
-    color = models.CharField(
-        max_length=1,
-        choices=color.choices,    
-    )
+    color = models.CharField(max_length=1, choices=[
+        ('b', _('Black')),
+        ('w', _('White')),
+        ('s', _('Blue')),
+    ])
+    fabric = models.CharField(max_length=1, choices=[
+        ('c', _('Cotton')),
+        ('s', _('Silk')),
+        ('g', _('Georgette')),
+    ])
+    embroidery = models.CharField(max_length=1, choices=[
+        ('y', _('Yes')),
+        ('n', _('No')),
+    ])
+    size = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'Customization'
 
+    def __str__(self):
+        return f"{self.product.product_name} - {self.color}, {self.fabric}, {self.embroidery}, Size: {self.size}"
+
+
 
 class Orders(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     items_json = models.CharField(max_length=1000)
-    surname = models.CharField(max_length=150)
     first_name = models.CharField(max_length=150)
-    company_name = models.CharField(max_length=250)
-    street = models.CharField(max_length=150)
-    municipalities = models.CharField(max_length=150)
-    post_code = models.CharField(max_length=150)
-    state = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    company_name = models.CharField(max_length=250, blank=True, null=True)
+    address = models.TextField()
+    phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=100)
-    phone_number = models.CharField(max_length=150)
-
+    status = models.CharField(max_length=50, choices=[
+        ('Pending', 'Pending'),
+        ('Processing', 'Processing'),
+        ('Dispatched', 'Dispatched'),
+        ('In Transit', 'In Transit'),
+        ('Delivered', 'Delivered'),
+        ('Canceled', 'Canceled'),
+    ], default='Pending')
+    tracking_number = models.CharField(max_length=50, blank=True, null=True)
+    assigned_tailor = models.CharField(max_length=100, blank=True, null=True)
+    delivery_status = models.CharField(max_length=50, choices=[
+        ('In Transit', 'In Transit'),
+        ('Shipped', 'Shipped'),
+        ('Delivered', 'Delivered'),
+    ], default='In Transit')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'Orders'
+
+    def __str__(self):
+        return f"Order {self.id} - {self.status}"

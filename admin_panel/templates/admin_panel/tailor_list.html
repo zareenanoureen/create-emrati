@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailors</title>
+    <!-- Include Bootstrap CSS or any other CSS framework you're using -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your custom styles -->
+    <style>
+        .status-btn {
+            background-color: white;
+            border: 1px solid #ced4da;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Tailors</h1>
+            <a href="{% url 'add_tailor' %}" class="new-tailor-btn">+ New Tailor</a>
+        </div>
+
+<div class="container mt-5">
+    <h1>Tailors</h1>
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>{{ total_tailors }}</h2>
+                    <p>Tailors</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>{{ active_tailors }}</h2>
+                    <p>Active Tailors</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>{{ inactive_tailors }}</h2>
+                    <p>Inactive Tailors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="search">Search by name or phone</label>
+            <input type="text" class="form-control" placeholder="Search by name or phone">
+        </div>
+        <div class="col-sm-2">
+            <label for="status">Status</label>
+            <select class="form-control">
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <label for="from_date">From date</label>
+            <input type="date" class="form-control" placeholder="From date">
+        </div>
+        <div class="col-sm-3">
+            <label for="to_date">To date</label>
+            <input type="date" class="form-control" placeholder="To date">
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-dark">Filter</button>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tailor in tailors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ tailor.name }}</td>
+                <td>{{ tailor.phone }}</td>
+                <td>{{ tailor.email }}</td>
+                <td>
+                    <select class="form-control status-btn" data-tailor-id="{{ tailor.id }}" onchange="handleStatusChange(this)">
+                        <option value="active" {% if tailor.status == 'Active' %}selected{% endif %}>Active</option>
+                        <option value="inactive" {% if tailor.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+                    </select>
+                </td>
+                <td>
+                    <a href="{% url 'edit_tailor' tailor.id %}" class="btn btn-link">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function getCSRFToken() {
+    const csrfTokenElement = document.querySelector('[name="csrfmiddlewaretoken"]');
+    return csrfTokenElement ? csrfTokenElement.value : '';
+}
+
+function handleStatusChange(selectElement) {
+    const selectedValue = selectElement.value;
+    const tailorId = selectElement.getAttribute('data-tailor-id');
+
+    fetch('/admin_panel/update-status/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken()
+        },
+        body: JSON.stringify({
+            status: selectedValue,
+            id: tailorId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Status updated successfully');
+            selectElement.value = selectedValue;
+            
+        } else {
+            console.error('Error updating status:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+</script>
+</body>
+</html>
