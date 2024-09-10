@@ -81,3 +81,62 @@ An admin panel to manage customers, orders, and the thobe catalog efficiently.
 
 - **Reporting:**
   - Generate sales, customer, and inventory reports.
+
+## 6. Folder Structure
+
+```bash
+create-emrati-master/
+│
+├── db.sqlite3      
+├── docs.md
+├── manage.py       
+├── README.md       
+├── requirements.txt
+├── script.py       
+│
+├── admin_panel/    
+│   ├── admin.py    
+│   ├── apps.py     
+│   ├── consumers.py
+│   ├── forms.py    
+│   ├── models.py   
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── __init__.py
+│   └── templates/
+│
+├── emiratipublicpage/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── __init__.py
+│   └── templates/
+│
+├── myshopifyapp/
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── __init__.py
+│
+├── shop/
+│   └── images/
+│       └── g-wagon.jpg
+│
+└── shopify_integration/
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── shopify_settings.py
+    ├── tests.py
+    ├── urls.py
+    ├── utils.py
+    ├── views.py
+    └── __init__.py
+    └── templates/
